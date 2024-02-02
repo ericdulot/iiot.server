@@ -56,7 +56,7 @@ if [ ! -f "flag.nodered" ]
 then
 echo "nodered install"
 sudo docker volume create nodered_data
-sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:2.2
+sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
 #install palettes
 #node-red-contrib-array-splitter-0.0.2.tgz
 sudo docker cp node-red-contrib-array-splitter-0.0.2.tgz  nodered:/usr/src/node-red/node-red-contrib-array-splitter-0.0.2.tgz
@@ -82,6 +82,9 @@ sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown-0
 #node-red-contrib-opcua-0.2.321.tgz
 sudo docker cp node-red-contrib-opcua-0.2.321.tgz  nodered:/usr/src/node-red/node-red-contrib-opcua-0.2.321.tgz
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-opcua-0.2.321.tgz"
+#node-red-contrib-modbus-5.22.0.tgz
+sudo docker cp node-red-contrib-modbus-5.22.0.tgz  nodered:/usr/src/node-red/node-red-contrib-modbus-5.22.0.tgz
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus-5.22.0.tgz"
 
 
 sudo docker restart nodered
