@@ -1,0 +1,1 @@
+sudo docker exec -i warp10 warp10 tokengen - < envelope.mc2
