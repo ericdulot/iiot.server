@@ -57,13 +57,14 @@ then
 echo "nodered install"
 sudo docker volume create nodered_data
 sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
+
 #set registry
 sudo docker exec nodered /bin/sh -c "npm config set registry=http://eddatademo.ddns.net:4873"
-
+sudo docker restart nodered
 #install palettes
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter"
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-master-iolink"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-al13xx"
 sudo docker exec nodered /bin/sh -c "npm install nnode-red-contrib-influxdb"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
