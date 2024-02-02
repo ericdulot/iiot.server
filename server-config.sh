@@ -128,8 +128,8 @@ sudo mkdir /home/pi/discovery
 sudo docker run -d -p 9090:3000 --name discovery --restart=always -v /home/pi/discovery:/data  warp10io/discovery-explorer:1.0.62
 #creation de l'application
 touch envelope
-sudo docker cp envelope.mc2  warp10:
-docker exec -i warp10 warp10-standalone.sh tokengen - < envelope.mc2
+sudo docker cp envelope.mc2  warp10:/opt/warp10-3.1.2/bin/envelope.mc2
+sudo docker exec -i warp10 warp10-standalone.sh tokengen - < envelope.mc2
 touch flag.warp10
 fi
 
