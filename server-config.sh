@@ -57,11 +57,18 @@ then
 echo "nodered install"
 sudo docker volume create nodered_data
 sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
+#set registry
+sudo docker exec nodered /bin/sh -c "npm config set registry=http://eddatademo.ddns.net:4873"
+
 #install palettes
-sudo docker cp node-red-contrib-rpi-shutdown-0.0.2.tgz  nodered:/usr/src/node-red/node-red-contrib-rpi-shutdown-0.0.2.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown-0.0.2.tgz"
-
-
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-master-iolink"
+sudo docker exec nodered /bin/sh -c "npm install nnode-red-contrib-influxdb"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
+sudo docker exec nodered /bin/sh -c "npm install node-red-dashboard"
+sudo docker exec nodered /bin/sh -c "npm install senx-node-red-contrib-warpscript" 
 
 sudo docker restart nodered
 touch flag.nodered
