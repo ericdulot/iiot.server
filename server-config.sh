@@ -57,6 +57,20 @@ then
 echo "nodered install"
 sudo docker volume create nodered_data
 sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
+
+#set registry
+sudo docker exec nodered /bin/sh -c "npm config set registry=http://eddatademo.ddns.net:4873"
+
+#install palettes
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-master-iolink"
+sudo docker exec nodered /bin/sh -c "npm install nnode-red-contrib-influxdb"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
+sudo docker exec nodered /bin/sh -c "npm install node-red-dashboard"
+sudo docker exec nodered /bin/sh -c "npm install senx-node-red-contrib-warpscript" 
+
 touch flag.nodered
 fi
 
@@ -96,9 +110,7 @@ sudo docker run -d -p 8080:8080 -p 8081:8081 --name warp10 --restart=always -v /
 sudo mkdir /home/pi/discovery
 sudo docker run -d -p 9090:3000 --name discovery --restart=always -v /home/pi/discovery:/data  warp10io/discovery-explorer:1.0.62
 #creation de l'application
-touch envelope
-sudo docker cp envelope.mc2  warp10:/opt/warp10-3.1.2/bin/envelope.mc2
-sudo docker exec -i warp10 warp10-standalone.sh tokengen - < envelope.mc2
+
 touch flag.warp10
 fi
 
