@@ -57,35 +57,14 @@ then
 echo "nodered install"
 sudo docker volume create nodered_data
 sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
+
 #install palettes
 #node-red-contrib-array-splitter-0.0.2.tgz
 sudo docker cp node-red-contrib-array-splitter-0.0.2.tgz  nodered:/usr/src/node-red/node-red-contrib-array-splitter-0.0.2.tgz
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter-0.0.2.tgz"
-#node-red-contrib-ui-led-0.4.11.tgz
-sudo docker cp node-red-contrib-ui-led-0.4.11.tgz  nodered:/usr/src/node-red/node-red-contrib-ui-led-0.4.11.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led-0.4.11.tgz"
 #node-red-contrib-ifm-master-iolink-1.0.0.tgz
 sudo docker cp node-red-contrib-ifm-master-iolink-1.0.0.tgz  nodered:/usr/src/node-red/node-red-contrib-ifm-master-iolink-1.0.0.tgz
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-master-iolink-1.0.0.tgz"
-#node-red-dashboard-3.6.2.tgz
-sudo docker cp node-red-dashboard-3.6.2.tgz  nodered:/usr/src/node-red/node-red-dashboard-3.6.2.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-dashboard-3.6.2.tgz"
-#node-red-contrib-influxdb-0.7.0.tgz 
-sudo docker cp node-red-contrib-influxdb-0.7.0.tgz  nodered:/usr/src/node-red/node-red-contrib-influxdb-0.7.0.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-influxdb-0.7.0.tgz"
-#senx-node-red-contrib-warpscript-1.0.2.tgz
-sudo docker cp senx-node-red-contrib-warpscript-1.0.2.tgz  nodered:/usr/src/node-red/senx-node-red-contrib-warpscript-1.0.2.tgzz
-sudo docker exec nodered /bin/sh -c "npm install senx-node-red-contrib-warpscript-1.0.2.tgz"
-#node-red-contrib-rpi-shutdown-0.0.2.tgz
-sudo docker cp node-red-contrib-rpi-shutdown-0.0.2.tgz  nodered:/usr/src/node-red/node-red-contrib-rpi-shutdown-0.0.2.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown-0.0.2.tgz"
-#node-red-contrib-opcua-0.2.321.tgz
-sudo docker cp node-red-contrib-opcua-0.2.321.tgz  nodered:/usr/src/node-red/node-red-contrib-opcua-0.2.321.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-opcua-0.2.321.tgz"
-#node-red-contrib-modbus-5.22.0.tgz
-sudo docker cp node-red-contrib-modbus-5.22.0.tgz  nodered:/usr/src/node-red/node-red-contrib-modbus-5.22.0.tgz
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus-5.22.0.tgz"
-
 
 sudo docker restart nodered
 touch flag.nodered
