@@ -111,10 +111,26 @@ sudo docker exec influxdb influx -execute 'CREATE RETENTION POLICY "retention_1d
 touch flag.influxdb
 fi
 
-
 #installation broker
 if [ ! -f "flag.broker" ]
 then
 sudo docker run -d -p 1883:1883 --name brokerMqtt --restart=always  eclipse-mosquitto:1.6.14
 touch flag.broker
 fi
+
+
+#installation warp10
+if [ ! -f "flag.warp10" ]
+then
+sudo mkdir /home/pi/warp10
+sudo docker run -d -p 8080:8080 -p 8081:8081 --name warp10 --restart=always -v /home/pi/warp10:/data  warp10io/warp10:3.1.2-ubuntu-ci
+sudo mkdir /home/pi/discovery
+sudo docker run -d -p 9090:3000 --name discovery --restart=always -v /home/pi/discovery:/data  warp10io/discovery-explorer:1.0.62
+#creation de l'application
+touch envelope
+sudo docker cp envelope.mc2  warp10:
+docker exec -i warp10 warp10-standalone.sh tokengen - < envelope.mc2
+touch flag.warp10
+fi
+
+
