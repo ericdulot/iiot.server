@@ -26,12 +26,12 @@ touch flag.docker
 fi
 
 #paramétrage proxy docker
-if [ -f "http-proxy.conf" -a ! -f "flag.proxy" ]
+if [ -f "/home/pi/http-proxy.conf" -a ! -f "flag.proxy" ]
 then
 echo
 echo "parametrage du proxy pour docker"
 sudo mkdir /etc/systemd/system/docker.service.d
-sudo cp http-proxy.conf /etc/systemd/system/docker.service.d/http-proxy.conf
+sudo cp /home/pi/http-proxy.conf /etc/systemd/system/docker.service.d/http-proxy.conf
 echo 
 echo "patientez pendant le redemarrage du service docker"
 sudo systemctl daemon-reload
