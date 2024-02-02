@@ -64,7 +64,7 @@ sudo docker exec nodered /bin/sh -c "npm config set registry=http://eddatademo.d
 #install palettes
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter"
-sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-master-iolink"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-al13xx"
 sudo docker exec nodered /bin/sh -c "npm install nnode-red-contrib-influxdb"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
