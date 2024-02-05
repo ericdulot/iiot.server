@@ -26,7 +26,7 @@ touch flag.docker
 fi
 
 #paramétrage proxy docker
-if [ -f "~/http-proxy.conf" -a ! -f "flag.proxy" ]
+if [ -f "/home/pi/http-proxy.conf" -a ! -f "flag.proxy" ]
 then
 echo
 echo "parametrage du proxy pour docker"
@@ -39,7 +39,7 @@ sudo systemctl restart docker
 sleep 5
 echo
 echo "service docker redemarré"
-touch flag.proxy
+
 fi
 
 #installation de portainer
@@ -59,13 +59,14 @@ sudo docker volume create nodered_data
 sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:/data  nodered/node-red:3.1
 
 #set registry proxy
-if [ ! -f "flag.proxy" ]
+if [ -f "/home/pi/http-proxy.conf" -a ! -f "flag.proxy" ]
 then
 read line < /home/pi/npm-proxy.conf
 cmd1="\"npm config set proxy $line\""
 cmd2="\"npm config set https-proxy $line\""
 sudo docker exec nodered /bin/sh -c $cmd1
 sudo docker exec nodered /bin/sh -c $cmd2
+touch flag.proxy
 fi
 sudo docker restart nodered
 
