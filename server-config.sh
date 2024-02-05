@@ -77,7 +77,7 @@ sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
 sudo docker exec nodered /bin/sh -c "npm install node-red-dashboard"
 sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-opcua"
-#sudo docker exec nodered /bin/sh -c "npm install n@senx/node-red-contrib-warpscript"
+sudo docker exec nodered /bin/sh -c "npm install @senx/node-red-contrib-warpscript"
 
 sudo docker restart nodered
 
