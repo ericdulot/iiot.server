@@ -60,6 +60,7 @@ sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:
 
 #set registry proxy
 if [ ! -f "flag.proxy" ]
+then
 read line < ~/npm-proxy.conf
 cmd1="\"npm config set proxy $line\""
 cmd2="\"npm config set https-proxy $line\""
