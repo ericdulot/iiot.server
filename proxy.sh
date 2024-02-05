@@ -15,9 +15,12 @@ echo "[Service]" >> http-proxy.conf
 echo "Environment=\"HTTP_PROXY="$request"/\""  >> http-proxy.conf
 echo "Environment=\"HTTPS_PROXY="$request"/\""  >> http-proxy.conf
 
-echo "export http_proxy=\""$request"\"" >> /home/pi/.profile
-echo "export https_proxy=\""$request"\"" >> /home/pi/.profile
-echo "export no_proxy=\"localhost,127.0.0.1\"" >> /home/pi/.profile
+touch npm-proxy.conf
+echo $request >> ~/npm-proxy.conf
+
+echo "export http_proxy=\""$request"\"" >> ~/.profile
+echo "export https_proxy=\""$request"\"" >> ~/.profile
+echo "export no_proxy=\"localhost,127.0.0.1\"" >> ~/.profile
 . ~/.profile
 echo "proxy configuré"
 bash
