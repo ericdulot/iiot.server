@@ -62,10 +62,8 @@ sudo docker run -d -p 1880:1880 --name nodered --restart=always -v nodered_data:
 if [ -f "/home/pi/http-proxy.conf" -a ! -f "flag.proxy" ]
 then
 read line < /home/pi/npm-proxy.conf
-cmd1="\"npm config set proxy $line\""
-cmd2="\"npm config set https-proxy $line\""
-sudo docker exec nodered /bin/sh -c $cmd1
-sudo docker exec nodered /bin/sh -c $cmd2
+sudo docker exec nodered /bin/sh -c "npm config set proxy $line"
+sudo docker exec nodered /bin/sh -c "npm config set https-proxy $line"
 touch flag.proxy
 fi
 sudo docker restart nodered
