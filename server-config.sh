@@ -68,6 +68,19 @@ sudo docker exec nodered /bin/sh -c $cmd1
 sudo docker exec nodered /bin/sh -c $cmd2
 fi
 sudo docker restart nodered
+
+#install palettes
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-rpi-shutdown"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-array-splitter"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ifm-al13xx"
+sudo docker exec nodered /bin/sh -c "npm install nnode-red-contrib-influxdb"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-modbus"
+sudo docker exec nodered /bin/sh -c "npm install node-red-contrib-ui-led"
+sudo docker exec nodered /bin/sh -c "npm install node-red-dashboard"
+sudo docker exec nodered /bin/sh -c "npm install senx-node-red-contrib-warpscript" 
+sudo docker restart nodered
+
+
 touch flag.nodered
 fi
 
